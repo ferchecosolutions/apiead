@@ -2,24 +2,22 @@
 
 namespace App\Repositories;
 
-use App\Models\Course;
+use App\Models\Module;
 
-class CourseRepository
+class ModuleRepository
 {
     protected $entity;
 
-    public function __construct(Course $model)
+    public function __construct(Module $model)
     {
         $this->entity = $model;
     }
 
-    public function getAllCourses()
+    public function getModulesByCourseId(string $courseId)
     {
-        return $this->entity->get();
+        return $this->entity
+            ->where('course_id', $courseId)
+            ->get();
     }
 
-    public function getCourse(string $identify)
-    {
-        return $this->entity->findOrFail($identify);
-    }
 }

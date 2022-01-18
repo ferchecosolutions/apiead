@@ -3,9 +3,11 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Storage;
 
-class UserResource extends JsonResource
+class CourseResource extends JsonResource
 {
+
     /**
      * Transform the resource into an array.
      *
@@ -17,7 +19,10 @@ class UserResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'email' => $this->email,
+            'description' => $this->description,
+            'image' => $this->image ? Storage::url($this->image) : ''
         ];
     }
+
+
 }
